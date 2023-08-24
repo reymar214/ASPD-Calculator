@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stats Table</title>
+<script src="javascript/scripts.js"></script>
+<style>
+  body {
+    background-color: #292828;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+  }
+  .container {
+    margin: 20px auto;
+    display: flex;
+    justify-content: center;
+  }
+  .table-wrapper {
+    margin: 0 20px;
+  }
+  table {
+    border-collapse: collapse;
+    border: 1px solid black;
+  }
+  th, td {
+    border: 1px solid black;
+    background-color: #f2f2f2;
+    padding: 8px;
+    number-align: left;
+  }
+  th {
+    background-color: #f2f2f2;
+    number-align: center;
+  }
+
+  td input {
+    number-align: center; /* Align number in input fields to center */
+    width: 95%;
+  }
+
+  .left-aligned {
+    number-align: left;
+    margin-right: auto;
+  }
+  .center-aligned {
+    number-align: center;
+  }
+  .right-aligned {
+    number-align: right;
+  }
+  .flex-container {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .flex-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .table-wrapper.shadow-equipment {
+    margin-top: -240px;
+    margin-right: 34px;
+  }percASPD
+
+  .gray-numberbox {
+    color: rgb(129, 209, 255);
+  }
+</style>
+</head>
+<body>
+    <div class="container">
+        <div class="flex-container">
+            <div class="table-wrapper left-aligned">
+            <table>
+                <tr>
+                    <th colspan="2">Stats/Buffs/Pets/Etc</th>
+                </tr>
+                <tr>
+                <th>% (ASPD Percentage)</th>
+                <td><input type="number" id="PercentASPD" class="numeric-input"></td>
+                </tr>
+                <tr>
+                <th>Flat ASPD</th>
+                <td><input type="number" id="FlatASPD" class="numeric-input"></td>
+                </tr>
+                <tr>
+                <th>AGI (Base + Bonus)</th>
+                <td><input type="number" id="AGI" class="numeric-input"></td>
+                </tr>
+                <tr>
+                <th>DEX (Base + Bonus)</th>
+                <td><input type="number" id="DEX" class="numeric-input"></td>
+                </tr>
+                <tr>
+                  <th colspan="2">Class & R/L Hand</th>
+                </tr>
+                <tr>
+                <th>Class</th>
+                <td><select id="classSelect">
+                  <option value="rk">Rune Knight</option>
+                  <option value="rg">Royal Guard</option>
+                  <option value="wl">Warlock</option>
+                  <option value="sr">Sorcerer</option>
+                  <option value="gc">Guillotine Cross</option>
+                  <option value="sc">Shadow Chaser</option>
+                  <option value="su">Sura</option>
+                  <option value="ab">Arch Bishop</option>
+                  <option value="ra">Ranger</option>
+                  <option value="wd">Wanderer</option>
+                  <option value="ma">Maestro</option>
+                  <option value="me">Mechanic</option>
+                  <option value="ge">Geneticist</option>
+                  <option value="sn">Super Novice</option>
+                  <option value="re">Rebellion</option>
+                  <option value="ka">Kagerou</option>
+                  <option value="ob">Oboro</option>
+                </tr>
+              </select>
+                <tr>
+                <th>R Hand</th>
+                <td><select id="rHand">
+                  <option value="dg">Dagger</option>
+                  <option value="1hs">1H Sword</option>
+                  <option value="2hs">2H Sword</option>
+                  <option value="1ha">1H Axe</option>
+                  <option value="2ha">2H Axe</option>
+                  <option value="mc">Mace</option>
+                  <option value="1hspe">1H Spear</option>
+                  <option value="2hspe">2H Spear</option>
+                  <option value="1hst">1H Staff</option>
+                  <option value="2hst">2H Staff</option>
+                  <option value="bk">Book</option>
+                  <option value="knk">Knuckle</option>
+                  <option value="kat">Katar</option>
+                  <option value="bw">Bow</option>
+                  <option value="ins">Instrument</option>
+                  <option value="hum">Huuma</option>
+                  <option value="hg">Handgun/Pistol</option>
+                  <option value="rf">Rifle</option>
+                  <option value="sg">Shotgun</option>
+                  <option value="gat">Gatling</option>
+                  <option value="gren">Grenade</option>
+                  <option value="sd">Staff of Destruction</option>
+                </tr>
+                <tr>
+                <th>L Hand</th>
+                <td><input type="text" id="lHand" class="numeric-input"></td>
+                </tr>
+            </table>
+            </div>
+
+    <div class="table-wrapper center-aligned">
+      <table>
+        <tr>
+            <th colspan="5">ASPD from Equipment</th>
+          </tr>
+        <tr>
+          <th>Equipment</th>
+          <th>% Percentage</th>
+          <th>Flat ASPD</th>
+          <th>AGI</th>
+          <th>DEX</th>
+        </tr>
+        <tr>
+          <td>Head (Top)</td>
+          <td><input type="number" id="topPercentASPD" class="numeric-input"></td>
+          <td><input type="number" id="topFlatASPD" class="numeric-input"></td>
+          <td><input type="number" id="topAGI" class="numeric-input"></td>
+          <td><input type="number" id="topDEX" class="numeric-input"></td>
+          <tr>
+            <td>Head (Mid)</td>
+            <td><input type="number" id="midPercentASPD" class="numeric-input"></td>
+            <td><input type="number" id="midFlatASPD"  class="numeric-input"></td>
+            <td><input type="number" id="midAGI"  class="numeric-input"></td>
+            <td><input type="number" id="midDEX"  class="numeric-input"></td>
+          </tr>
+          <tr>
+            <td>Head (Low)</td>
+            <td><input type="number" id="lowPercentASPD"  class="numeric-input"></td>
+            <td><input type="number" id="lowFlatASPD"  class="numeric-input"></td>
+            <td><input type="number" id="lowAGI"  class="numeric-input"></td>
+            <td><input type="number" id="lowDEX"  class="numeric-input"></td>
+          </tr>
+          <tr>
+            <td>Armor</td>
+            <td><input type="number" id="armorPercentASPD"  class="numeric-input"></td>
+            <td><input type="number" id="armorFlatASPD"  class="numeric-input"></td>
+            <td><input type="number" id="armorAGI"  class="numeric-input"></td>
+            <td><input type="number" id="armorDEX"  class="numeric-input"></td>
+          </tr>
+          <tr>
+            <td>Weapon (Right Hand)</td>
+            <td><input type="number" id="weaponPercentASPD" class="numeric-input"></td>
+            <td><input type="number" id="weaponFlatASPD"  class="numeric-input"></td>
+            <td><input type="number" id="weaponAGI"  class="numeric-input"></td>
+            <td><input type="number" id="weaponDEX"  class="numeric-input"></td>
+          </tr>
+          <tr>
+            <td>Shield (Left Hand)</td>
+            <td><input type="number" id="shieldPercentASPD"  class="numeric-input"></td>
+            <td><input type="number" id="shieldFlatASPD"  class="numeric-input"></td>
+            <td><input type="number" id="shieldAGI"  class="numeric-input"></td>
+            <td><input type="number" id="shieldDEX"  class="numeric-input"></td>
+          </tr>
+          <tr>
+            <td>Garment</td>
+            <td><input type="number" id="garmentPercentASPD"  class="numeric-input"></td>
+            <td><input type="number" id="garmentFlatASPD"  class="numeric-input"></td>
+            <td><input type="number" id="garmentAGI"  class="numeric-input"></td>
+            <td><input type="number" id="ShieldDEX"  class="numeric-input"></td>
+          </tr>
+          <tr>
+            <td>Boots</td>
+            <td><input type="number" id="bootsPercentASPD"  class="numeric-input"></td>
+            <td><input type="number" id="bootsFlatASPD"  class="numeric-input"></td>
+            <td><input type="number" id="bootsAGI"  class="numeric-input"></td>
+            <td><input type="number" id="bootsDEX"  class="numeric-input"></td>
+          </tr>
+          <tr>
+            <td>Accessory L</td>
+            <td><input type="number"  id="laccPercentASPD"  class="numeric-input"></td>
+            <td><input type="number"  id="raccFlatASPD"  class="numeric-input"></td>
+            <td><input type="number"  id="laccAGI"  class="numeric-input"></td>
+            <td><input type="number" id="laccDEX"  class="numeric-input"></td>
+          </tr>
+          <tr>
+            <td>Accessory R</td>
+            <td><input type="number" id="raccPercentASPD"  class="numeric-input"></td>
+            <td><input type="number" id="raccFlatASPD"  class="numeric-input"></td>
+            <td><input type="number" id="raccAGI"  class="numeric-input"></td>
+            <td><input type="number" id="raccDEX"  class="numeric-input"></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+    <div class="table-wrapper right-aligned">
+    <table>
+      <tr>
+        <th colspan="2">Additional Values
+        </th>
+      </tr>
+      <tr>
+        <th>Job Base ASPD</th>
+        <td><input type="number" id="jobBaseASPD" class="numeric-input" readonly style="background-color: lightgray;"></td>
+      </tr>
+      <tr>
+        <th>Speed Potion</th>
+        <td><input type="number" id="attackSpeedPotion" class="numeric-input"></td>
+      </tr>
+      <tr>
+        <th>Skill ASPD%</th>
+        <td><input type="number" id="skillAttackSpeedPercent" class="numeric-input"></td>
+      </tr>
+      <tr>
+        <th>Damage per hit</th>
+        <td><input type="number" id="damagePerHit" class="numeric-input"></td>
+      </tr>
+      <tr>
+        <th>Shield Penalty</th>
+        <td><input type="number" id="shieldPenalty" class="numeric-input"></td>
+      </tr>
+      <tr>
+        <th colspan="2">Result
+        </th>
+      <tr>
+        <th>Total AGI</th>
+        <td><input type="number" id="resultTotalAGI" class="numeric-input" readonly style="background-color: lightgray;"> </td>
+      </tr>
+      <tr>
+        <th>Total DEX</th>
+        <td><input type="number" id="resultTotalDEX" class="numeric-input" readonly style="background-color: lightgray;"></td>
+      </tr>
+      <tr>
+        <th>Equip ASPD%</th>
+        <td><input type="number" id="resultTotalASPDPerc" class="numeric-input" readonly style="background-color: lightgray;"></td>
+      </tr>
+      <tr>
+        <th>Equip +ASPD</th>
+        <td><input type="number" id="resultTotalFlatASPD"  class="numeric-input" readonly style="background-color: lightgray;"></td>
+      </tr>
+      <tr>
+        <th>ASPD Correction</th>
+        <td><input type="number" id="resultTotalASPDCorrection"  class="numeric-input" readonly style="background-color: lightgray;"></td>
+      </tr>
+      <tr>
+        <th>ASPD Penalty</th>
+        <td><input type="number" id="resultTotalASPDPenalty"  class="numeric-input" readonly style="background-color: lightgray;"></td>
+      </tr>
+      <tr>
+        <th>Base ASPD</th>
+        <td><input type="number" id="resultTotalBaseASPD"  class="numeric-input" readonly style="background-color: lightgray;"></td>
+      </tr>
+      <tr>
+        <th>%_ASPD_Equipment</th>
+        <td><input type="number" id="resultEquipPercASPD"  class="numeric-input" readonly style="background-color: lightgray;"></td>
+      </tr>
+      <tr>
+        <th>Final ASPD</th>
+        <td><input type="number" id="resultTotalASPD"  class="numeric-input" readonly style="background-color: lightgray;" ></td>
+      </tr>
+      <tr>
+        <th>Attacks/Sec</th>
+        <td><input type="number" id="resultAttacksPerSec"  class="numeric-input" readonly style="background-color: lightgray;" ></td>
+      </tr>
+      <tr>
+        <th>Damage/Sec</th>
+        <td><input type="number"  id="resultDamagePerSec" class="numeric-input" readonly style="background-color: lightgray;"></td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+
+<div class="flex-column">
+    <div class="table-wrapper center-aligned shadow-equipment">
+      <table>
+        <tr>
+          <th>Shadow Equipment</th>
+          <th>% Percentage</th>
+          <th>Flat ASPD</th>
+          <th>AGI</th>
+          <th>DEX</th>
+        </tr>
+        <tr>
+          <td>Head (Top)</td>
+          <td><input type="number"  id="sTopPercentASPD"  class="numeric-input"></td>
+          <td><input type="number"  id="sTopFlatASPD" class="numeric-input"></td>
+          <td><input type="number"  id="sTopAGI" class="numeric-input"></td>
+          <td><input type="number"  id="sTopDEX" class="numeric-input"></td>
+        </tr>
+        <td>Head (Mid)</td>
+        <td><input type="number" id="sMidPercentASPD"  class="numeric-input"></td>
+        <td><input type="number" id="sMidFlatASPD"  class="numeric-input"></td>
+        <td><input type="number" id="sMidAGI"  class="numeric-input"></td>
+        <td><input type="number" id="sMidDEX"  class="numeric-input"></td>
+      </tr>
+      <tr>
+        <td>Head (Low)</td>
+        <td><input type="number" id="sLowPercentASPD"  class="numeric-input"></td>
+        <td><input type="number" id="sLowFlatASPD"  class="numeric-input"></td>
+        <td><input type="number" id="sLowAGI"  class="numeric-input"></td>
+        <td><input type="number" id="sLowDEX"  class="numeric-input"></td>
+      </tr>
+      <tr>
+        <td>Armor</td>
+        <td><input type="number" id="sArmorPercentASPD"  class="numeric-input"></td>
+        <td><input type="number" id="sArmorFlatASPD"  class="numeric-input"></td>
+        <td><input type="number" id="sArmorAGI"  class="numeric-input"></td>
+        <td><input type="number" id="sArmorDEX"  class="numeric-input"></td>
+      </tr>
+      <tr>
+        <td>Weapon (Right Hand)</td>
+        <td><input type="number" id="sWeaponPercentASPD"  class="numeric-input"></td>
+        <td><input type="number" id="sWeaponFlatASPD"  class="numeric-input"></td>
+        <td><input type="number" id="sWeaponAGI"  class="numeric-input"></td>
+        <td><input type="number" id="sWeaponDEX"  class="numeric-input"></td>
+      </tr>
+      <tr>
+        <td>Shield (Left Hand)</td>
+        <td><input type="number" id="sShieldPercentASPD"  class="numeric-input"></td>
+        <td><input type="number" id="sShieldFlatASPD"  class="numeric-input"></td>
+        <td><input type="number" id="sShieldAGI"  class="numeric-input"></td>
+        <td><input type="number" id="sShieldDEX"  class="numeric-input"></td>
+      </tr>
+      <tr>
+        <td>Garment</td>
+        <td><input type="number" id="sGarmentPercentASPD"  class="numeric-input"></td>
+        <td><input type="number" id="sGarmentFlatASPD"  class="numeric-input"></td>
+        <td><input type="number" id="sGarmentAGI"  class="numeric-input"></td>
+        <td><input type="number" id="sGarmentDEX"  class="numeric-input"></td>
+      </tr>
+      <tr>
+        <td>Boots</td>
+        <td><input type="number" id="sBootsPercentASPD" class="numeric-input"></td>
+        <td><input type="number"id="sbootsFlatASPD"  class="numeric-input"></td>
+        <td><input type="number"id="sBootsAGI"  class="numeric-input"></td>
+        <td><input type="number" id="sBootsDEX" class="numeric-input"></td>
+      </tr>
+      <tr>
+        <td>Accessory L</td>
+        <td><input type="number" id="sLaccPercentASPD"  class="numeric-input"></td>
+        <td><input type="number" id="sLaccFlatASPD"  class="numeric-input"></td>
+        <td><input type="number" id="sLaccAGI"  class="numeric-input"></td>
+        <td><input type="number" id="sLaccDEX"  class="numeric-input"></td>
+      </tr>
+      <tr>
+        <td>Accessory R</td>
+        <td><input type="number" id="srAccPercentASPD" class="numeric-input"></td>
+        <td><input type="number" id="srAccFlatASPD" class="numeric-input"></td>
+        <td><input type="number" id="srAccAGI"class="numeric-input"></td>
+        <td><input type="number" id="srAccDEX" class="numeric-input"></td>
+    </tr>
+      </table>
+    </div>
+  </div>
+</body>
+</body>
+</html>
